@@ -47,7 +47,7 @@ class PostController extends Controller
         // ]);
         //after make PostRequest to make validation
         // Post::create($request->validated());
-        //after make c
+        //after make authenticated
         $data = $request->validated();
         $data['user_id'] = Auth::id();
         Post::create($data);
@@ -72,11 +72,7 @@ class PostController extends Controller
         // ]);
         //after make PostRequest to make validation
         $post = Post::findOrFail($id);
-        // $post->update($request->validated());
-
-        //after make authenticated
-        $data = $request->validated();
-        $post->updated($data);
+        $post->update($request->validated());
         return to_route('posts.index');
     }
     public function destroy($id){
